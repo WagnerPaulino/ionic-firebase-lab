@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import { Carro } from '../../app/domain/carro';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { CarroService } from '../../services/carro.service';
 /**
  * Generated class for the ListaCarroPage page.
  *
@@ -15,13 +15,11 @@ import 'rxjs/add/operator/map';
   templateUrl: 'lista-carro.html',
 })
 export class ListaCarroPage {
-  
-  carrosColletion: AngularFirestoreCollection<any>;
-  carros: Observable<any[]>;
 
-  constructor(private db: AngularFirestore) {
-    this.carrosColletion = this.db.collection('/carro');
-    this.carros = this.carrosColletion.valueChanges();
+  carros: Observable<Carro[]>;
+
+  constructor(private service: CarroService) {
+    this.carros = service.findAll();
   }
   cadastrar(){
 

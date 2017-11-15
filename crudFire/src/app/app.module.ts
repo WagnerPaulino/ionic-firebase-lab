@@ -9,6 +9,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListaCarroPage } from '../pages/lista-carro/lista-carro';
+import { CarroService } from '../services/carro.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDCPcmmeNym9Mqw8DIjLgD3LW8s_SjOdY0",
@@ -41,6 +42,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    CarroService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
