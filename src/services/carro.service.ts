@@ -1,17 +1,22 @@
+import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { Carro } from './../app/domain/carro';
 import { Injectable } from "@angular/core";
-import { Carro } from "../app/domain/carro";
-import { AngularFirestoreCollection, AngularFirestore } from "angularfire2/firestore";
 
 @Injectable()
 export class CarroService{
 
-    carrosColletion: AngularFirestoreCollection<Carro>;
-
-    constructor(private db: AngularFirestore){}
+    carrosColletion: AngularFireList<Carro>;
+    constructor(private db: AngularFireDatabase){}
 
     public findAll(){
-        this.carrosColletion = this.db.collection('/carro');
+        this.carrosColletion = this.db.list('carro');
         return this.carrosColletion.valueChanges();
+    }
+
+    public save(carro: Carro){
+        console.log(carro);
+        this.carrosColletion = this.db.list('carro');
+        return this.carrosColletion.push(carro);
     }
 
 }

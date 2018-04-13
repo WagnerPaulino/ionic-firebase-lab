@@ -1,3 +1,4 @@
+import { SaveCarroPage } from './../pages/save-carro/save-carro';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -26,7 +27,8 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    ListaCarroPage
+    ListaCarroPage,
+    SaveCarroPage
     
   ],
   imports: [
@@ -41,7 +43,8 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    ListaCarroPage
+    ListaCarroPage,
+    SaveCarroPage
   ],
   providers: [
     StatusBar,

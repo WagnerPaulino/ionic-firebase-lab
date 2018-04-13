@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Carro } from '../../app/domain/carro';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { CarroService } from '../../services/carro.service';
 /**
@@ -16,10 +15,13 @@ import { CarroService } from '../../services/carro.service';
 })
 export class ListaCarroPage {
 
-  carros: Observable<Carro[]>;
+  carros: Carro[];
 
   constructor(private service: CarroService) {
-    this.carros = service.findAll();
+    this.service.findAll().subscribe((x)=>{
+      console.log(x);
+      this.carros = x;
+    });
   }
   cadastrar(){
 
