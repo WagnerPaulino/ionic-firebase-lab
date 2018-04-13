@@ -1,6 +1,5 @@
 export class Carro{
-    id?: string;
+    id: string;
     dono: string;
     modelo: string;
-    multa: boolean
 }

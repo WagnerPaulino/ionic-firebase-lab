@@ -27,11 +27,9 @@ export class SaveCarroPage {
   }
 
   salvar(){
-    console.log(this.carro);
-    this.service.save(this.carro).then((x)=>{
+    this.service.save(this.carro).then((x:any)=>{
       this.navCtrl.pop();
       this.navCtrl.push(ListaCarroPage)
-      console.log(x);
     });
   }
 
