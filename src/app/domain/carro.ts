@@ -1,5 +1,5 @@
 export class Carro{
-    id: string;
+    $key: string;
     dono: string;
     modelo: string;
 }

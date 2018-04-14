@@ -1,8 +1,9 @@
+import { SaveCarroPage } from './../save-carro/save-carro';
 import { Component } from '@angular/core';
 import { Carro } from '../../app/domain/carro';
 import 'rxjs/add/operator/map';
 import { CarroService } from '../../services/carro.service';
-import { ActionSheetController } from 'ionic-angular';
+import { ActionSheetController, NavController } from 'ionic-angular';
 /**
  * Generated class for the ListaCarroPage page.
  *
@@ -19,24 +20,40 @@ export class ListaCarroPage {
   carros: Carro[];
 
   constructor(private service: CarroService,
-              private actionSheetCtrl: ActionSheetController) {
+              private actionSheetCtrl: ActionSheetController,
+              public navCtrl: NavController) {
     this.service.findAll().subscribe((x)=>{
-      console.log(x[0].id);
-      this.carros = x;
+      this.carros = [];
+      x.forEach((element)=>{
+        let y = element.payload.toJSON();
+        y["$key"] = element.key;
+        this.carros.push(y as Carro);
+      })
     });
   }
 
-  openMenu() {
+  openMenu(key,carro) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Ações',
       buttons: [
         {
           text: 'Editar',
           handler: () => {
+            this.navCtrl.push(SaveCarroPage,{key:key,carro:carro});
           }
         },{
           text: 'Excluir',
           handler: () => {
+            this.service.remover(key).then(()=>{
+              this.service.findAll().subscribe((x)=>{
+                this.carros = [];
+                x.forEach((element)=>{
+                  let y = element.payload.toJSON();
+                  y["$key"] = element.key;
+                  this.carros.push(y as Carro);
+                })
+              });
+            });
           }
         },{
           text: 'Cancel',
