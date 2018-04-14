@@ -18,16 +18,16 @@ import { ActionSheetController, NavController } from 'ionic-angular';
 export class ListaCarroPage {
 
   carros: Carro[];
-
+  
   constructor(private service: CarroService,
-              private actionSheetCtrl: ActionSheetController,
-              public navCtrl: NavController) {
-    this.service.findAll().subscribe((x)=>{
-      this.carros = [];
-      x.forEach((element)=>{
-        let y = element.payload.toJSON();
-        y["$key"] = element.key;
-        this.carros.push(y as Carro);
+    private actionSheetCtrl: ActionSheetController,
+    public navCtrl: NavController) {
+      this.service.findAll().subscribe((x)=>{
+        this.carros = [];
+        x.forEach((element)=>{
+          let y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.carros.push(y as Carro);
       })
     });
   }

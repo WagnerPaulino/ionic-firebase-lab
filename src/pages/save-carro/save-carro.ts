@@ -36,7 +36,6 @@ export class SaveCarroPage {
       this.service.editar(this.id, this.carro).then((x)=>{
         console.log(x);
         this.navCtrl.pop();
-        this.navCtrl.push(ListaCarroPage)
       });
     }else{
       this.service.inserir(this.carro).then((x:any)=>{
