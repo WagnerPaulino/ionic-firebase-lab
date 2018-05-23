@@ -13,6 +13,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListaCarroPage } from '../pages/lista-carro/lista-carro';
 import { CarroService } from '../services/carro.service';
+import { ListaDonoPage } from '../pages/lista-dono/lista-dono';
+import { SaveDonoPage } from '../pages/save-dono/save-dono';
+import { DonoService } from '../services/dono.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDCPcmmeNym9Mqw8DIjLgD3LW8s_SjOdY0",
@@ -28,7 +31,9 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ListaCarroPage,
-    SaveCarroPage
+    SaveCarroPage,
+    ListaDonoPage,
+    SaveDonoPage
     
   ],
   imports: [
@@ -44,12 +49,15 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ListaCarroPage,
-    SaveCarroPage
+    SaveCarroPage,
+    ListaDonoPage,
+    SaveDonoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     CarroService,
+    DonoService,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

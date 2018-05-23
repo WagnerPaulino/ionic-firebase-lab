@@ -1,8 +1,8 @@
 import { ListaCarroPage } from './../lista-carro/lista-carro';
 import { CarroService } from './../../services/carro.service';
-import { Carro } from './../../app/domain/carro';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Carro } from '../../domain/carro';
 
 /**
  * Generated class for the SaveCarroPage page.

@@ -1,5 +1,7 @@
+import { Dono } from "./dono";
+
 export class Carro{
     $key: string;
-    dono: string;
     modelo: string;
+    dono: Dono;
 }

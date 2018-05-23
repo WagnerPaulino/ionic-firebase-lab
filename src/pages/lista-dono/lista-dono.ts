@@ -1,56 +1,56 @@
-import { SaveCarroPage } from './../save-carro/save-carro';
+import { SaveDonoPage } from './../save-dono/save-dono';
 import { Component } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { CarroService } from '../../services/carro.service';
+import { DonoService } from '../../services/dono.service';
 import { ActionSheetController, NavController } from 'ionic-angular';
-import { Carro } from '../../domain/carro';
+import { Dono } from '../../domain/dono';
 /**
- * Generated class for the ListaCarroPage page.
+ * Generated class for the ListaDonoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-lista-carro',
-  templateUrl: 'lista-carro.html',
+  selector: 'page-lista-dono',
+  templateUrl: 'lista-dono.html',
 })
-export class ListaCarroPage {
+export class ListaDonoPage {
 
-  carros: Carro[];
+  donos: Dono[];
   
-  constructor(private service: CarroService,
+  constructor(private service: DonoService,
     private actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController) {
       this.service.findAll().subscribe((x)=>{
-        this.carros = [];
+        this.donos = [];
         x.forEach((element)=>{
           let y = element.payload.toJSON();
           y["$key"] = element.key;
-          this.carros.push(y as Carro);
+          this.donos.push(y as Dono);
       })
     });
   }
 
-  openMenu(key,carro) {
+  openMenu(key,dono) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Ações',
       buttons: [
         {
           text: 'Editar',
           handler: () => {
-            this.navCtrl.push(SaveCarroPage,{key:key,carro:carro});
+            this.navCtrl.push(SaveDonoPage,{key:key,dono:dono});
           }
         },{
           text: 'Excluir',
           handler: () => {
             this.service.remover(key).then(()=>{
               this.service.findAll().subscribe((x)=>{
-                this.carros = [];
+                this.donos = [];
                 x.forEach((element)=>{
                   let y = element.payload.toJSON();
                   y["$key"] = element.key;
-                  this.carros.push(y as Carro);
+                  this.donos.push(y as Dono);
                 })
               });
             });

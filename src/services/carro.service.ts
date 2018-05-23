@@ -1,6 +1,6 @@
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
-import { Carro } from './../app/domain/carro';
 import { Injectable } from "@angular/core";
+import { Carro } from '../domain/carro';
 
 @Injectable()
 export class CarroService{
