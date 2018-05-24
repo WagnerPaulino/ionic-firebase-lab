@@ -1,3 +1,5 @@
+import { Dono } from './../../domain/dono';
+import { DonoService } from './../../services/dono.service';
 import { ListaCarroPage } from './../lista-carro/lista-carro';
 import { CarroService } from './../../services/carro.service';
 import { Component } from '@angular/core';
@@ -18,20 +20,32 @@ import { Carro } from '../../domain/carro';
 export class SaveCarroPage {
 
   public carro: Carro = new Carro();
+  public donos: Dono[] = [];
   id:any = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private service: CarroService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private service: CarroService, private donoService: DonoService) {
     if(this.navParams.get('key')){
       this.id = this.navParams.get('key');
-      this.carro = this.navParams.get('carro')
+      this.carro = this.navParams.get('carro');
     }
   }
 
   ionViewDidLoad() {
+    if(!this.navParams.get('key')){
+      console.log(this.id)
+      this.donoService.findAll().subscribe((x)=>{
+        x.forEach((element)=>{
+          let y = element.payload.toJSON();
+          y["key"] = element.key;
+          let z: Dono = new Dono(y["key"],y["nome"]);
+          console.log(z);
+          this.donos.push(z);
+        })
+      });
+    }
   }
 
   salvar(){
-    console.log("Id ao editar: "+this.id);
     if(this.id){
       this.service.editar(this.id, this.carro).then((x)=>{
         console.log(x);

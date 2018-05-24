@@ -26,7 +26,7 @@ export class ListaCarroPage {
         this.carros = [];
         x.forEach((element)=>{
           let y = element.payload.toJSON();
-          y["$key"] = element.key;
+          y["key"] = element.key;
           this.carros.push(y as Carro);
       })
     });
@@ -49,7 +49,7 @@ export class ListaCarroPage {
                 this.carros = [];
                 x.forEach((element)=>{
                   let y = element.payload.toJSON();
-                  y["$key"] = element.key;
+                  y["key"] = element.key;
                   this.carros.push(y as Carro);
                 })
               });

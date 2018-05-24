@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content>
   <ion-list *ngFor="let dono of donos">
-    <button ion-item (click)="openMenu(dono.$key,dono)">
+    <button ion-item (click)="openMenu(dono.key,dono)">
       <h2>Nome: {{dono.nome}}</h2>
       <h3>Cidade:  {{dono.cidade}}</h3>
     </button>

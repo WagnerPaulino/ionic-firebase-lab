@@ -22,7 +22,7 @@ export class CarroService{
     public editar(id, carro:Carro){
         console.log(id);
         let ref = this.db.object("/carro/"+id);
-        return ref.update({dono: carro.dono, modelo:carro.modelo});
+        return ref.update({donos: carro.donos, modelo:carro.modelo});
     }
 
     public remover(id){

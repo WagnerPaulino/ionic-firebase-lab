@@ -17,7 +17,7 @@ import { Dono } from '../../domain/dono';
 })
 export class SaveDonoPage {
 
-  public dono: Dono = new Dono();
+  public dono: Dono = new Dono('','');
   id:any = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: DonoService) {

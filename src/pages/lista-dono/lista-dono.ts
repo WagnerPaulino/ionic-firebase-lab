@@ -26,7 +26,7 @@ export class ListaDonoPage {
         this.donos = [];
         x.forEach((element)=>{
           let y = element.payload.toJSON();
-          y["$key"] = element.key;
+          y["key"] = element.key;
           this.donos.push(y as Dono);
       })
     });

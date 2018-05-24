@@ -5,9 +5,9 @@
 </ion-header>
 <ion-content>
   <ion-list *ngFor="let carro of carros">
-    <button ion-item (click)="openMenu(carro.$key,carro)">
+    <button ion-item (click)="openMenu(carro.key,carro)">
       <h2>Modelo: {{carro.modelo}}</h2>
-      <h3>Dono:  {{carro.dono}}</h3>
+      <h3>Dono:  {{carro.donos["nome"]}}</h3>
     </button>
   </ion-list>
 </ion-content>
