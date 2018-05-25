@@ -20,13 +20,15 @@ import { Carro } from '../../domain/carro';
 export class SaveCarroPage {
 
   public carro: Carro = new Carro();
-  public donos: Dono[] = [];
+  //public donos: Array<Dono> = new Array<Dono>();
   id:any = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: CarroService, private donoService: DonoService) {
     if(this.navParams.get('key')){
       this.id = this.navParams.get('key');
       this.carro = this.navParams.get('carro');
+      console.log("Ao editar");
+      console.log(this.carro);
     }
   }
 
@@ -38,8 +40,7 @@ export class SaveCarroPage {
           let y = element.payload.toJSON();
           y["key"] = element.key;
           let z: Dono = new Dono(y["key"],y["nome"]);
-          console.log(z);
-          this.donos.push(z);
+          this.carro.donos.push(z);
         })
       });
     }
@@ -48,7 +49,6 @@ export class SaveCarroPage {
   salvar(){
     if(this.id){
       this.service.editar(this.id, this.carro).then((x)=>{
-        console.log(x);
         this.navCtrl.pop();
       });
     }else{

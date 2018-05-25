@@ -20,8 +20,8 @@
       <ion-input type="text" value="" [(ngModel)]="carro.modelo"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-select [(ngModel)]="carro.donos" [selectOptions]="carro.donos" multiple="true" cancelText="Cancelar" okText="OK">
-        <ion-option *ngFor="let dono of donos" [value]="dono">{{dono.nome}}</ion-option>
+      <ion-select [(ngModel)]="carro.donos" multiple="true" cancelText="Cancelar" okText="OK">
+        <ion-option *ngFor="let dono of carro.donos" [value]="dono">{{dono.nome}}</ion-option>
       </ion-select>
     </ion-item>
     <button ion-button color="primary" (click)="salvar()">Salvar</button>
