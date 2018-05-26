@@ -1,4 +1,4 @@
-import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Injectable } from "@angular/core";
 import { Carro } from '../domain/carro';
 
@@ -11,6 +11,10 @@ export class CarroService{
     public findAll(){
         this.carrosColletion = this.db.list('carro');
         return this.carrosColletion.snapshotChanges()
+    }
+
+    public findOneByKey(key): AngularFireObject<Carro>{
+        return this.db.object('/carro/'+key);
     }
 
     public inserir(carro: Carro){

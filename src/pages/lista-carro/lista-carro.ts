@@ -32,14 +32,14 @@ export class ListaCarroPage {
     });
   }
 
-  openMenu(key,carro) {
+  openMenu(key) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Ações',
       buttons: [
         {
           text: 'Editar',
           handler: () => {
-            this.navCtrl.push(SaveCarroPage,{key:key,carro:carro});
+            this.navCtrl.push(SaveCarroPage,{key:key});
           }
         },{
           text: 'Excluir',

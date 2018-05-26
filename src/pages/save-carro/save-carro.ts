@@ -26,11 +26,12 @@ export class SaveCarroPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: CarroService, private donoService: DonoService) {
     if(this.navParams.get('key')){
       this.id = this.navParams.get('key');
-      this.carro = this.navParams.get('carro');
-      console.log("Ao editar");
-      console.log(this.carro);
-    }
+      this.service.findOneByKey(this.id).snapshotChanges().subscribe((x)=>{
+        this.carro.key = x.key;
+        this.carro = x.payload.val();
+    })
   }
+}
 
   ionViewDidLoad() {
     if(!this.navParams.get('key')){
