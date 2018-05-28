@@ -33,4 +33,8 @@ export class CarroService{
         return this.carrosColletion.remove(id);
     }
 
+    public findOneByDono(key?){
+        return this.db.list('carro').query.orderByChild("donos").on("value",(snapshot)=> console.log(snapshot.val()));
+    }
+
 }
