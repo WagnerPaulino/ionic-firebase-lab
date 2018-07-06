@@ -1,3 +1,5 @@
+import { Carro } from './../../domain/carro';
+import { CarroService } from './../../services/carro.service';
 import { ListaDonoPage } from './../lista-dono/lista-dono';
 import { DonoService } from './../../services/dono.service';
 import { Component } from '@angular/core';
@@ -20,7 +22,7 @@ export class SaveDonoPage {
   public dono: Dono = new Dono('','');
   id:any = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private service: DonoService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private service: DonoService, private carroService: CarroService) {
     if(this.navParams.get('key')){
       this.id = this.navParams.get('key');
       this.dono = this.navParams.get('dono')
@@ -31,10 +33,22 @@ export class SaveDonoPage {
   }
 
   salvar(){
-    console.log("Id ao editar: "+this.id);
     if(this.id){
+      let carro: Carro = new Carro();
+      this.carroService.findAll().subscribe((carros)=>{
+        carros.map((ca)=>{
+          ca.payload.val().donos.forEach(element => {
+            if(element.key == this.id){
+              carro = ca.payload.val();
+              carro.key = ca.key
+              carro.donos.find((d)=> d.key == this.id).key = this.id;
+              carro.donos.find((d)=> d.key == this.id).nome = this.dono.nome;
+              this.carroService.editar(carro.key, carro);
+            }
+          });
+        })
+      })
       this.service.editar(this.id, this.dono).then((x)=>{
-        console.log(x);
         this.navCtrl.pop();
       });
     }else{

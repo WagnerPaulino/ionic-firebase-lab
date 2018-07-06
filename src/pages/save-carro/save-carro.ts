@@ -29,6 +29,7 @@ export class SaveCarroPage {
       this.service.findOneByKey(this.id).snapshotChanges().subscribe((x)=>{
         this.carro.key = x.key;
         this.carro = x.payload.val();
+        console.log(this.carro);
     })
   }
 }
