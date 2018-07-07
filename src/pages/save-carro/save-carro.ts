@@ -24,19 +24,10 @@ export class SaveCarroPage {
   id:any = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: CarroService, private donoService: DonoService) {
-    if(this.navParams.get('key')){
-      this.id = this.navParams.get('key');
-      this.service.findOneByKey(this.id).snapshotChanges().subscribe((x)=>{
-        this.carro.key = x.key;
-        this.carro = x.payload.val();
-        console.log(this.carro);
-    })
   }
-}
-
+  
   ionViewDidLoad() {
     if(!this.navParams.get('key')){
-      console.log(this.id)
       this.donoService.findAll().subscribe((x)=>{
         x.forEach((element)=>{
           let y = element.payload.toJSON();
@@ -45,9 +36,15 @@ export class SaveCarroPage {
           this.carro.donos.push(z);
         })
       });
-    }
+    } else {
+      this.id = this.navParams.get('key');
+      this.service.findOneByKey(this.id).snapshotChanges().subscribe((x)=>{
+        this.carro.key = x.key;
+        this.carro = x.payload.val();
+    })
   }
-
+  }
+  
   salvar(){
     if(this.id){
       this.service.editar(this.id, this.carro).then((x)=>{

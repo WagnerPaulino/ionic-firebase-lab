@@ -29,7 +29,6 @@ export class ListaCarroPage {
           y["key"] = element.key;
           this.carros.push(y as Carro);
       })
-      this.service.findOneByDono();
     });
   }
 

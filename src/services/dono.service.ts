@@ -14,13 +14,11 @@ export class DonoService{
     }
 
     public inserir(dono: Dono){
-        console.log(dono);
         this.donosColletion = this.db.list('dono');
         return this.donosColletion.push(dono);
     }
 
     public editar(id, dono:Dono){
-        console.log(id);
         let ref = this.db.object("/dono/"+id);
         return ref.update({nome: dono.nome, cidade: dono.cidade, idade: dono.idade});
     }

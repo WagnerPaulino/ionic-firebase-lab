@@ -18,13 +18,11 @@ export class CarroService{
     }
 
     public inserir(carro: Carro){
-        console.log(carro);
         this.carrosColletion = this.db.list('carro');
         return this.carrosColletion.push(carro);
     }
 
     public editar(id, carro:Carro){
-        console.log(id);
         let ref = this.db.object("/carro/"+id);
         return ref.update({donos: carro.donos, modelo:carro.modelo});
     }
@@ -33,8 +31,8 @@ export class CarroService{
         return this.carrosColletion.remove(id);
     }
 
-    public findOneByDono(key?){
-        return this.db.list('carro').query.orderByChild("donos").on("value",(snapshot)=> console.log(snapshot.val()));
-    }
+    // public findOneByDono(key?){
+    //     return this.db.list('carro').query.orderByChild("donos").on("value",(snapshot)=> console.log(snapshot.val()));
+    // }
 
 }

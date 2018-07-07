@@ -43,7 +43,11 @@ export class SaveDonoPage {
               carro.key = ca.key
               carro.donos.find((d)=> d.key == this.id).key = this.id;
               carro.donos.find((d)=> d.key == this.id).nome = this.dono.nome;
-              this.carroService.editar(carro.key, carro);
+              this.carroService.editar(carro.key, carro).then((r)=>{
+                console.log("Carro atualizado!")
+              });
+              console.log("Operação finalizada");
+              return false;
             }
           });
         })
