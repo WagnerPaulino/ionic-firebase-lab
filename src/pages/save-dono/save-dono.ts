@@ -1,5 +1,3 @@
-import { Carro } from './../../domain/carro';
-import { CarroService } from './../../services/carro.service';
 import { ListaDonoPage } from './../lista-dono/lista-dono';
 import { DonoService } from './../../services/dono.service';
 import { Component } from '@angular/core';

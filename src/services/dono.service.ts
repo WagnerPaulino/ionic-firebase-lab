@@ -24,10 +24,10 @@ export class DonoService{
     public editar(id, dono:Dono){
         let ref = this.db.object("/dono/"+id);
         let carroRef = this.db.list("/carro");
-        carroRef.query.on('value', (snapshot) => {
+        carroRef.query.once('value', (snapshot) => {//once para busca somente uma vez evitando loops
             snapshot.forEach(r => {
                 let carro: Carro = new Carro();
-                let flag: boolean = true;
+                let flag: boolean = false;
                 r.val().donos.map(element => {
                     let keyDonoCarro = element.key;
                     if(id == keyDonoCarro){
@@ -38,16 +38,13 @@ export class DonoService{
                         carro.donos.find((d)=> d.key == id).nome = dono.nome;
                         this.carroService.editar(carro.key, carro).then((r)=>{
                           console.log("Carro atualizado!")
-                          flag = false;
+                          flag = true;
                         }).catch((r)=>{
                             console.log(r)
-                            return false
                         });
-                        return false;
                     }
-                    return true;
                 });
-                return flag;
+                return flag
             })
           });
         return ref.update({nome: dono.nome, cidade: dono.cidade, idade: dono.idade});
